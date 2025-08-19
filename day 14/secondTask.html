@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .carousel-item {
+        height: 600px;
+      }
+      .carousel-image {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+      .feature-icon {
+        font-size: 2rem;
+        color: #ffc107;
+      }
+      .hero-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: white;
+      }
+      .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+      .hero-content p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+      }
+      .btn-primary {
+        background-color: #ffc107;
+        border-color: #ffc107;
+        color: #000;
+      }
+      .btn-primary:hover {
+        background-color: #ffb300;
+        border-color: #ffb300;
+        color: #000;
+      }
+      .section-title {
+        color: #333;
+        font-weight: bold;
+        margin-bottom: 3rem;
+        text-align: center;
+      }
+      .service-card {
+        transition: transform 0.3s ease;
+        height: 100%;
+      }
+      .service-card:hover {
+        transform: translateY(-5px);
+      }
+      .navbar-brand {
+        font-size: 1.8rem;
+        color: #333 !important;
+      }
+      .nav-link {
+        font-weight: 500;
+        color: #555 !important;
+      }
+      .nav-link:hover {
+        color: #ffc107 !important;
+      }
+      .card {
+        position: relative;
+      }
+      .album-item:hover {
+        transform: scale(1.05);
+      }
+
+      .album-item img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        transition: filter 0.3s ease;
+      }
+
+      .album-item:hover img {
+        filter: brightness(0.4);
+      }
+
+      .album-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .album-item:hover .album-overlay {
+        opacity: 1;
+      }
+
+      .album-icons {
+        display: flex;
+        gap: 20px;
+      }
+
+      .album-icon {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .album-icon:hover {
+        background: #ffffff;
+        transform: scale(1.1);
+      }
+      .album-icon i {
+        color: black;
+      }
+      .album-icon i {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 18px;
+        cursor: pointer;
+        transform: translateY(5px); /* initially lower */
+        opacity: 0;
+        transition: all 0.4s ease-in-out;
+      }
+
+      .album-item:hover .album-icon i {
+        transform: translateY(0); /* slide up into place */
+        opacity: 1; /* fade in */
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm px-4">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">ENGAGE</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Our Work</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+            <li class="nav-item">
+              <a class="nav-link btn btn-primary ms-2 px-3" href="#">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div
+      id="carouselExample"
+      class="carousel slide position-relative"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/shutterstock_93376255.jpg"
+            class="d-block carousel-image"
+            alt="Construction Team"
+          />
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <h1>BUILD WITH US.</h1>
+              <p>
+                We're the biggest, best equipped and most advanced building
+                company in the greater Las Vegas area.
+              </p>
+              <a href="#" class="btn btn-primary px-4">LEARN MORE</a>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img
+            src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/shutterstock_93376240.jpg"
+            class="d-block carousel-image"
+            alt="Construction Site"
+          />
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <h1>PROFESSIONAL CONSTRUCTION</h1>
+              <p>
+                Over 30 years of experience in residential and commercial
+                building projects.
+              </p>
+              <a href="#" class="btn btn-primary px-4">VIEW PROJECTS</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExample"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+    <div class="container my-5 py-5">
+      <h2 class="section-title">Why Choose Engage Construction</h2>
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">👥</div>
+            <h4>Professional Staff</h4>
+            <p>
+              Our experienced team brings decades of construction expertise to
+              every project, ensuring quality results.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">📍</div>
+            <h4>Great Locations</h4>
+            <p>
+              We serve the greater Las Vegas area and surrounding communities
+              with reliable construction services.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">📈</div>
+            <h4>Fast Results</h4>
+            <p>
+              Efficient project management and streamlined processes ensure your
+              project is completed on time.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">👍</div>
+            <h4>Satisfied Clients</h4>
+            <p>
+              Our commitment to excellence has earned us a reputation for
+              delivering exceptional construction projects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5 py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <h2 class="mb-4">Learn About Us</h2>
+          <p class="lead mb-4">
+            We have been operating for over 30 years and are Members of The
+            Federation of Master Builders. We work on projects big and small
+            from small residential extensions to full house and commercial
+            builds and we are registered NHBC house builders.
+          </p>
+          <p class="mb-4">
+            Our team combines traditional craftsmanship with modern construction
+            techniques to deliver outstanding results. From initial planning to
+            final completion, we manage every aspect of your construction
+            project with precision and care.
+          </p>
+          <a href="#" class="btn btn-primary px-3">LEARN MORE</a>
+        </div>
+        <div class="col-lg-6">
+          <img
+            src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/shutterstock_93376240.jpg"
+            alt="Construction Planning"
+            class="img-fluid rounded shadow"
+          />
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5 py-5">
+      <h2 class="section-title">Our Construction Services</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🏗️</div>
+            <h4>Commercial Construction</h4>
+            <p>
+              Complete commercial building solutions from office complexes to
+              retail spaces, delivered on time and within budget.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🏠</div>
+            <h4>Residential Building</h4>
+            <p>
+              Custom homes and residential projects built to the highest
+              standards with attention to every detail.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🔨</div>
+            <h4>Renovations</h4>
+            <p>
+              Transform your existing space with our comprehensive renovation
+              services for homes and businesses.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🏢</div>
+            <h4>Project Management</h4>
+            <p>
+              Full project oversight from planning and permits to completion,
+              ensuring smooth execution throughout.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">⚙️</div>
+            <h4>Design-Build</h4>
+            <p>
+              Integrated design and construction services that streamline the
+              building process from concept to completion.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🛠️</div>
+            <h4>Maintenance</h4>
+            <p>
+              Ongoing maintenance and repair services to keep your property in
+              excellent condition year-round.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">📋</div>
+            <h4>Consulting</h4>
+            <p>
+              Expert construction consulting services to help you make informed
+              decisions about your building projects.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🏗️</div>
+            <h4>Infrastructure</h4>
+            <p>
+              Large-scale infrastructure projects including roads, bridges, and
+              public facilities built to last.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center p-4 service-card">
+            <div class="feature-icon mb-3">🔧</div>
+            <h4>Specialty Work</h4>
+            <p>
+              Specialized construction services for unique projects requiring
+              expert knowledge and precise execution.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-5 py-5">
+      <h2 class="section-title">Our Work</h2>
+      <p class="text-center mb-5 lead">
+        You are going to love these completed projects.
+      </p>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="album-item card border-0 shadow-sm service-card">
+            <img
+              src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/shutterstock_86230687-600x600.jpg"
+              alt="Building Renovation"
+              class="card-img-top"
+              style="height: 250px; object-fit: cover"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i title="Search" class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link" title="View Image"></i>
+                </div>
+              </div>
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title">Building Renovation</h5>
+              <p class="card-text">
+                Complete renovation of a historic downtown building, preserving
+                original character while adding modern amenities.
+              </p>
+              <small class="text-muted"
+                >Buildings, Renovation • 16 Months</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="album-item card border-0 shadow-sm service-card">
+            <img
+              src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/shutterstock_279879422-600x600.jpg"
+              alt="Public Library"
+              class="card-img-top"
+              style="height: 250px; object-fit: cover"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">Public Library</h5>
+              <p class="card-text">
+                Modern library construction featuring sustainable materials and
+                energy-efficient design for community use.
+              </p>
+              <small class="text-muted">Buildings, Public • 20 Months</small>
+            </div>
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i title="Search" class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link" title="View Image"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="album-item border-0 shadow-sm service-card">
+            <img
+              src="http://www.engage.veented.com/construction/wp-content/uploads/sites/19/2017/04/full-1-600x600.jpg"
+              alt="Bridge Construction"
+              class="card-img-top"
+              style="height: 250px; object-fit: cover"
+            />
+            <div class="card-body text-center">
+              <h5 class="card-title">Bridge Construction</h5>
+              <p class="card-text">
+                Infrastructure project connecting two communities with a modern,
+                durable bridge designed for heavy traffic.
+              </p>
+              <small class="text-muted"
+                >Infrastructure, Public • 12 Months</small
+              >
+            </div>
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i title="Search" class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link" title="View Image"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-warning py-5">
+      <div class="container text-center">
+        <h2 class="mb-3 text-dark">Ready to Start Building?</h2>
+        <p class="lead mb-4 text-dark">
+          Contact us today to discuss your construction project and get a free
+          consultation.
+        </p>
+        <a href="#" class="btn btn-dark btn-lg px-4">GET STARTED</a>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

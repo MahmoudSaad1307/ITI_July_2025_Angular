@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav {
+      background-color: teal;
+      padding: 10px 0;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
+    }
+
+    nav ul li {
+      color: white;
+      margin: 0 15px;
+      cursor: pointer;
+      padding: 8px 12px;
+      transition: all 0.3s;
+    }
+
+    nav ul li:hover {
+      color: rgba(255, 255, 255, 0.732);
+      border-radius: 5px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card h2 {
+      font-size: 16px;
+      margin: 10px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #555;
+      margin: 0 10px 10px;
+    }
+  </style>
+  <body>
+    <nav>
+      <ul>
+        <li onclick="getNews('business')">Business</li>
+        <li onclick="getNews('health')">Health</li>
+        <li onclick="getNews('sports')">Sports</li>
+        <li onclick="getNews('technology')">Technology</li>
+        <li onclick="getNews('entertainment')">Entertainment</li>
+      </ul>
+    </nav>
+
+    <main></main>
+
+    <script>
+      const API_KEY = "101daae1bb1d43d4af588e27df007cee";
+      let itemList = [];
+
+      function getNews(category) {
+        fetch(
+          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${API_KEY}`
+        )
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Failed to fetch news");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            itemList = data.articles;
+            display();
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      }
+
+      function display() {
+        const main = document.querySelector("main");
+        main.innerHTML = "";
+
+        itemList.forEach((item) => {
+          console.log(item.urlToImage);
+
+          const card = document.createElement("div");
+          const h2 = document.createElement("h2");
+          const p = document.createElement("p");
+          const img = document.createElement("img");
+
+          card.classList.add("card");
+          img.classList.add("card-img");
+
+          h2.innerText = item.title || "No title";
+          p.innerText = item.description || "No description available";
+          img.src = item.urlToImage;
+          // img.src = `https://corsproxy.io/?${encodeURIComponent(
+          //   item.urlToImage
+          // )}`;
+
+          img.onerror = function () {
+            this.src =
+              "https://thumb.ac-illust.com/b1/b170870007dfa419295d949814474ab2_t.jpeg";
+          };
+
+          card.append(img, h2, p);
+          main.append(card);
+        });
+      }
+
+      window.onload = () => {
+        getNews("health");
+      };
+    </script>
+  </body>
+</html>

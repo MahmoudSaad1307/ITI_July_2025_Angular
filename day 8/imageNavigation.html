@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <style>
+      img {
+        width: 500px;
+        height: 300px;
+        object-fit: cover;
+        border: 2px solid #000;
+      }
+    </style>
+  </head>
+  <body class="container text-center mt-2">
+    <img id="slider" />
+
+    <div class="controls d-flex justify-content-center mt-4">
+      <button class="prev btn btn-secondary" onclick="prevImage()">⬅️</button>
+      <button class="play btn btn-success mx-2" onclick="startSlider()">
+        Play
+      </button>
+      <button class="stop btn btn-danger mx-2" onclick="stopSlider()">
+        Stop
+      </button>
+      <button class="next btn btn-secondary" onclick="nextImage()">➡️</button>
+    </div>
+
+    <script>
+      window.onload = function () {
+        startSlider();
+      };
+      const images = [
+        "https://picsum.photos/id/237/500/300",
+        "https://images.unsplash.com/photo-1526779259212-939e64788e3c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZnJlZSUyMGltYWdlc3xlbnwwfHwwfHx8MA%3D%3D", // Replace with your image URLs
+        "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?cs=srgb&dl=pexels-souvenirpixels-414612.jpg&fm=jpg",
+        "https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg",
+      ];
+
+      let currentIndex = 0;
+      let intervalId = null;
+
+      const slider = document.getElementById("slider");
+
+      function showImage(index) {
+        slider.src = images[index];
+      }
+
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+      }
+
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+      }
+
+      function startSlider() {
+        if (!intervalId) {
+          console.log("Starting slider");
+
+          intervalId = setInterval(nextImage, 555);
+        }
+      }
+
+      function stopSlider() {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    </script>
+  </body>
+</html>

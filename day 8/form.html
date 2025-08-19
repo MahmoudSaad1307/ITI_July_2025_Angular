@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="p-4">
+
+  <div class="container">
+    <h2 class="mb-4">Add Student</h2>
+    <form id="studentForm" class="mb-4">
+      <div class="mb-3">
+        <input type="text" id="name" class="form-control" placeholder="Name" />
+        <div class="text-danger small" id="nameError"></div>
+      </div>
+
+      <div class="mb-3">
+        <input type="number" id="age" class="form-control" placeholder="Age" />
+        <div class="text-danger small" id="ageError"></div>
+      </div>
+
+      <div class="mb-3">
+        <input type="email" id="email" class="form-control" placeholder="Email" />
+        <div class="text-danger small" id="emailError"></div>
+      </div>
+
+      <div class="mb-3">
+        <input type="password" id="password" class="form-control" placeholder="Password" />
+        <div class="text-danger small" id="passwordError"></div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+
+    <h3>Student List</h3>
+    <table class="table table-bordered" id="studentTable">
+      <thead class="table-light">
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script>
+    const form = document.getElementById("studentForm");
+    const tableBody = document.querySelector("#studentTable tbody");
+
+    window.onload = function () {
+      const students = JSON.parse(localStorage.getItem("students")) || [];
+      students.forEach(addStudentToTable);
+    };
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const age = parseInt(document.getElementById("age").value);
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      let isValid = true;
+      clearErrors();
+
+      if (name.length < 3) {
+        showError("nameError", "Name must be at least 3 characters.");
+        isValid = false;
+      }
+
+      if (!age || age <= 18) {
+        showError("ageError", "Age must be greater than 18.");
+        isValid = false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showError("emailError", "Enter a valid email.");
+        isValid = false;
+      }
+
+      const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{5,}$/;
+      if (!passwordRegex.test(password)) {
+        showError("passwordError", "Password must have upper/lowercase letters, number, and be at least 5 characters.");
+        isValid = false;
+      }
+
+      if (!isValid) return;
+
+      const student = { name, age, email };
+      addStudentToTable(student);
+      saveToLocalStorage(student);
+      form.reset();
+    });
+
+    function addStudentToTable(student) {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${student.name}</td><td>${student.age}</td><td>${student.email}</td>`;
+      tableBody.appendChild(row);
+    }
+
+    function saveToLocalStorage(student) {
+      const students = JSON.parse(localStorage.getItem("students")) || [];
+      students.push(student);
+      localStorage.setItem("students", JSON.stringify(students));
+    }
+
+    function showError(id, message) {
+      document.getElementById(id).textContent = message;
+    }
+
+    function clearErrors() {
+      ["nameError", "ageError", "emailError", "passwordError"].forEach(id => {
+        document.getElementById(id).textContent = "";
+      });
+    }
+  </script>
+</body>
+</html>

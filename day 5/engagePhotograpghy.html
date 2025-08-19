@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+
+    <style>
+      body {
+  background-color: #0a0a0a;
+  font-family: "Arial", sans-serif;
+}
+* {
+  color: #ffffff;
+}
+.nav {
+  background-color: #161616;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+li {
+  list-style: none;
+}
+a {
+  color: white;
+
+  text-decoration: none;
+}
+.nav-item:hover a {
+  color: #ffffff9f;
+}
+.search:hover {
+  color: #ffffff9f;
+}
+.nav-link {
+  color: white;
+}
+
+.nav-item {
+  margin-right: 20px;
+}
+.logo img {
+  margin-top: 10px;
+  width: 150px;
+  height: auto;
+}
+
+.search {
+  color: white;
+}
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.hero-content {
+  z-index: 2;
+  max-width: 600px;
+}
+
+.hero-content h1 {
+  font-size: 4rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.btn-custom {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  padding: 12px 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 12px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-custom:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.welcome-section {
+  padding: 100px 0;
+  text-align: center;
+}
+
+.welcome-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.welcome-section p {
+  font-size: 1rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+.about-section {
+  padding: 100px 0;
+  background: #111111;
+}
+
+.about-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.about-content h3 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.about-content p {
+  font-size: 1rem;
+  opacity: 0.8;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.albums-section {
+  padding: 100px 0;
+}
+
+.albums-section h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.albums-section .subtitle {
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: 50px;
+}
+
+.album-filters {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.album-filters button {
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  margin: 0 10px;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.album-filters button:hover,
+.album-filters button.active {
+  color: #cccccc;
+}
+
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.album-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.album-item:hover {
+  transform: scale(1.05);
+}
+
+.album-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+.album-item:hover img {
+  filter: brightness(0.4);
+}
+
+.album-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.album-item:hover .album-overlay {
+  opacity: 1;
+}
+
+.album-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.album-icon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+}
+
+.album-icon:hover {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+.album-icon i{
+  color:black
+}
+.album-icon i {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-size: 18px;
+  cursor: pointer;
+  transform: translateY(5px); /* initially lower */
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.album-item:hover .album-icon i {
+  transform: translateY(0);   /* slide up into place */
+  opacity: 1;                 /* fade in */
+}
+
+
+.view-all-btn {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.news-section {
+  padding: 100px 0;
+  background: #111111;
+}
+
+.news-section h2 {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.news-section .subtitle {
+  text-align: center;
+  opacity: 0.7;
+  margin-bottom: 50px;
+}
+
+.news-card {
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 5px;
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.news-card:hover {
+  transform: translateY(-5px);
+}
+
+.news-card h4 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.news-card p {
+  opacity: 0.8;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.news-card .read-more {
+  color: #ffffff;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #ffffff;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+
+.news-card .read-more:hover {
+  opacity: 0.7;
+}
+
+.footer {
+  background: #000000;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.footer .logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.footer p {
+  opacity: 0.7;
+  margin-bottom: 20px;
+}
+
+.social-links {
+  margin-top: 20px;
+}
+
+.social-links a {
+  color: #ffffff;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #cccccc;
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+
+  .navbar-nav .nav-link {
+    margin: 0 10px;
+  }
+
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <header class="sticky-top">
+      <nav class="navbar navbar-expand-lg bg-dark px-2">
+        <div
+          class="container d-flex justify-content-between align-items-center"
+        >
+          <a class="navbar-brand" href="#">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/08/engage-photography.png"
+              alt="Logo"
+              width="150"
+            />
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div
+            class="collapse navbar-collapse justify-content-end"
+            id="navbarNavAltMarkup"
+          >
+            <ul class="navbar-nav align-items-center">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Albums</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"
+                  ><i class="bi bi-search search"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section id="home" class="hero-section">
+      <img
+        src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/04/full-3.jpg"
+        alt="Hero Image"
+        class="hero-image"
+      />
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to<br />Artisan<br />Photography</h1>
+          <p>
+            We're the biggest, best equipped and most advanced Web Agency in the
+            greater Los Angeles area.
+          </p>
+          <a href="#about" class="btn-custom">Learn More</a>
+        </div>
+      </div>
+    </section>
+    <section class="welcome-section">
+      <div class="container">
+        <h2>Welcome to our website!</h2>
+        <p>
+          Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+          consectetur, adipisci velit! Ut enim ad minima veniam, quis nostrum
+          exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex
+          ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
+          ea voluptate velit esse quam nihil molestiae consequatur, vel illum
+          qui dolorem eum fugiat quo voluptas nulla pariatur?
+        </p>
+      </div>
+    </section>
+    <section id="about" class="about-section">
+      <div class="container"> 
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/04/photo-1484519332611-516457305ff6-800x700.jpg"
+              alt="About Image"
+              class="about-image"
+            />
+          </div>
+          <div class="col-lg-6">
+            <div class="about-content">
+              <h3>Learn about us</h3>
+              <p>
+                We have been operating for over 25 years and our clientele at
+                The Peltronian building. We work at projects big and small, from
+                international events to intimate birthday parties.
+              </p>
+              <p>
+                We understand that every client is unique and we promise to try
+                our best to satisfy your needs at a fraction of the cost of our
+                competition.
+              </p>
+              <p>
+                If you hire Chris, Chris will listen to whatever you want. Lorem
+                ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+                tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="albums" class="albums-section">
+      <div class="container">
+        <h2>Latest Albums</h2>
+        <p class="subtitle">
+          Check out our latest work and feel free to comment on it.
+        </p>
+
+        <div class="album-filters">
+          <button class="active">Show All</button>
+          <button>Landscape</button>
+          <button>Minimalist</button>
+          <button>Nature</button>
+          <button>Photography</button>
+          <button>Travel</button>
+        </div>
+
+        <div class="album-grid">
+          <div class="album-item">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/08/alex-iby-251903-900x.jpg"
+              alt="Album 1"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <!-- tooltip -->
+
+                  <i title="Search" class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link" title="View Image"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="album-item">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/08/nathaniel-chang-298253-900x.jpg"
+              alt="Album 2"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="album-item">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/04/photo-1484519332611-516457305ff6-800x700.jpg"
+              alt="Album 3"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="album-item">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/08/mohammad-metri-325178-900x.jpg"
+              alt="Album 4"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="album-item">
+            <img
+              src="http://www.engage.veented.com/photography-dark/wp-content/uploads/sites/33/2017/04/photo-1486074051793-e41332bf18fc-900x.jpg"
+              alt="Album 5"
+            />
+            <div class="album-overlay">
+              <div class="album-icons">
+                <div class="album-icon">
+                  <i class="bi bi-search"></i>
+                </div>
+                <div class="album-icon">
+                  <i class="bi bi-link"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="view-all-btn">
+          <a href="#" class="btn-custom">View All</a>
+        </div>
+      </div>
+    </section>
+    <section id="blog" class="news-section">
+      <div class="container">
+        <h2>Latest News</h2>
+        <p class="subtitle">
+          Check out our latest work and feel free to comment on it.
+        </p>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="news-card">
+              <h4>Gallery Post</h4>
+              <p>
+                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit. Ut enim ad minima veniam, quis
+                nostrum exercitationem ullam corporis suscipit laboriosam...
+              </p>
+              <a href="#" class="read-more">Read more →</a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="news-card">
+              <h4>Basic Post</h4>
+              <p>
+                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit. Ut enim ad minima veniam, quis
+                nostrum exercitationem ullam corporis suscipit laboriosam...
+              </p>
+              <a href="#" class="read-more">Read more →</a>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="news-card">
+              <h4>Quote Post</h4>
+              <p>
+                Neque porro quisquam est qui dolorem ipsum quia dolor sit amet,
+                consectetur, adipisci velit. Ut enim ad minima veniam, quis
+                nostrum exercitationem ullam corporis suscipit laboriosam...
+              </p>
+              <a href="#" class="read-more">Read more →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="view-all-btn">
+          <a href="#" class="btn-custom">Visit Our Blog →</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="logo">
+          ENGAGE<br />
+          <small style="font-size: 12px; font-weight: normal"
+            >PHOTOGRAPHY</small
+          >
+        </div>
+        <p>Copyright 2024 - All rights reserved</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+          navbar.style.background = "rgba(0, 0, 0, 0.95)";
+        } else {
+          navbar.style.background = "rgba(0, 0, 0, 0.9)";
+        }
+      });
+    </script>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</html>

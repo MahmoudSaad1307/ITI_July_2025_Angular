@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        animation: movee 2s infinite alternate;
+        width: 200px;
+      }
+      .card img {
+        border-radius: 2%;
+        width: 100%;
+      }
+
+      @keyframes movee {
+        0% {
+          transform: translateX(0);
+        }
+        20% {
+          visibility: hidden;
+          /* transform: translateX(100px); */
+        }
+        100% {
+          transform: translateX(1000px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img
+        src="./assets/images/SG_MAy2016_GroupDinnerLoaves_14760_2500w_web.jpg"
+        alt=""
+        srcset=""
+      />
+      <h2>Card Title</h2>
+    </div>
+  </body>
+</html>

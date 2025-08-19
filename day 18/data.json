@@ -1,0 +1,56 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Electronics"
+    },
+    {
+      "id": 2,
+      "name": "Clothing"
+    },
+    {
+      "id": 3,
+      "name": "Books"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Smartphone",
+      "categoryId": 1,
+      "price": 500,
+      "description": "High-end smartphone with great camera"
+    },
+    {
+      "id": 2,
+      "name": "T-Shirt",
+      "categoryId": 2,
+      "price": 20,
+      "description": "Comfortable cotton t-shirt"
+    },
+    {
+      "id": 3,
+      "name": "Novel",
+      "categoryId": 3,
+      "price": 15,
+      "description": "Bestselling novel with a thrilling plot"
+    }
+  ],
+  "cart": [
+    {
+      "productId": 1,
+      "quantity": 2
+    },
+    {
+      "productId": 2,
+      "quantity": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123"
+    }
+  ]
+}

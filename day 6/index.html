@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function checkPositiveNegative() {
+      const number = parseFloat(prompt("Enter a number to check if it's positive or negative:"));
+      if (number > 0) {
+        console.log("The number is positive.");
+      } else if (number < 0) {
+        console.log("The number is negative.");
+      } else {
+        console.log("The number is zero.");
+      }
+    }
+
+    function checkEvenOdd() {
+      const number = parseInt(prompt("Enter a number to check even or odd:"));
+      if (number % 2 === 0) {
+        console.log("The number is even.");
+      } else {
+        console.log("The number is odd.");
+      }
+    }
+
+    function getTicketPrice() {
+      const age = parseInt(prompt("Enter your age:"));
+      let price;
+      if (age < 12) price = 5;
+      else if (age < 18) price = 10;
+      else if (age < 60) price = 20;
+      else price = 15;
+      console.log(`Your ticket price is $${price}`);
+    }
+
+    function printEvenOddLoop() {
+      for (let i = 0; i <= 15; i++) {
+        console.log(`${i} is ${i % 2 === 0 ? "even" : "odd"}`);
+      }
+    }
+
+    function calculateCallback(num1, num2, callback) {
+      const result = callback(num1, num2);
+      console.log(`result is: ${result}`);
+    }
+
+    function calculator() {
+      const num1 = parseFloat(prompt("Enter first number:"));
+      const num2 = parseFloat(prompt("Enter second number:"));
+      const operation = prompt("Enter operation (+, -, *, /):");
+
+      switch (operation) {
+        case "+":
+          calculateCallback(num1, num2, (a, b) => a + b);
+          break;
+        case "-":
+          calculateCallback(num1, num2, (a, b) => a - b);
+          break;
+        case "*":
+          calculateCallback(num1, num2, (a, b) => a * b);
+          break;
+        case "/":
+          if (num2 === 0) console.log("Cannot divide by zero");
+          else calculateCallback(num1, num2, (a, b) => a / b);
+          break;
+        default:
+          console.log("Invalid operation entered");
+      }
+    }
+
+    function testIncrement1() {
+      let i = 11;
+      const x = i++ + ++i; 
+      console.log("x =", x); 
+    }
+
+    function testIncrement2() {
+      let a = 11;
+      let b = 22;
+      const c = a + b + a++ + b++ + ++a + ++b;
+      console.log("c =", c); 
+    }
+
+      checkPositiveNegative();
+      checkEvenOdd();
+      getTicketPrice();
+      printEvenOddLoop();
+      calculator();
+      testIncrement1();
+      testIncrement2();
+
+  </script>
+</body>
+</html>

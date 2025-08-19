@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 50px;
+      }
+
+      .container {
+        background: white;
+        padding: 20px 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 500px;
+      }
+
+      input {
+        padding: 10px;
+        width: 70%;
+        font-size: 16px;
+      }
+
+      button {
+        padding: 10px 15px;
+        font-size: 16px;
+        background-color: #3498db;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #2980b9;
+      }
+
+      #result {
+        margin-top: 20px;
+      }
+
+      .country-card {
+        border: 1px solid #ccc;
+        padding: 15px;
+        border-radius: 8px;
+      }
+
+      .country-card img {
+        width: 100px;
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" id="search" placeholder="Enter country name" />
+      <button onclick="searchCountry()">Search</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const name = document.getElementById("search");
+      name.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          searchCountry();
+        }
+      });
+      function searchCountry() {
+        const inputValue = name.value.trim().toLowerCase();
+        const resultDiv = document.getElementById("result");
+        resultDiv.innerHTML = "";
+
+        if (!inputValue) {
+          resultDiv.innerHTML = "<p>Please enter a country name.</p>";
+          return;
+        }
+
+        fetch(`https://restcountries.com/v3.1/name/${inputValue}`)
+          .then((res) => {
+            if (!res.ok) {
+              throw new Error("Country not found");
+            }
+            return res.json();
+          })
+          .then((data) => {
+            const country = data[0];
+            const card = `
+        <div class="country-card">
+          <img src="${country.flags.svg}" alt="Flag of ${
+              country.name.common
+            }" />
+          <h2>${country.name.common}</h2>
+          <p><strong>Capital:</strong> ${country.capital?.[0] || "N/A"}</p>
+          <p><strong>Population:</strong> ${country.population}</p>
+          <p><strong>Region:</strong> ${country.region}</p>
+          <p><strong>Subregion:</strong> ${country.subregion}</p>
+          <p><strong>Languages:</strong> ${Object.values(country.languages)}</p>
+        </div>
+      `;
+
+            resultDiv.innerHTML = card;
+          })
+          .catch((error) => {
+            resultDiv.innerHTML = `<p style="color:red;">${error.message}</p>`;
+          });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Family Bakery</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        color: #333;
+        line-height: 1.6;
+      }
+      /* .container{
+        display: column;
+        align-items: center;
+      } */
+      header {
+        background: url("../assets/images/premium_photo-1665669263531-cdcbe18e7fe4.jfif")
+          no-repeat center center/cover;
+        height: 90vh;
+        color: #fff;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      header h1 {
+        font-size: 3rem;
+      }
+      header p {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+      }
+      header button {
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        border: none;
+        background: #8b5c3f;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      section {
+        padding: 4rem 2rem;
+      }
+      .flex {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+      }
+      .column {
+        flex: 1;
+        min-width: 280px;
+      }
+      .our-baking{
+  text-align: center;
+  /* padding: 20px; */
+}
+.our-baking p {
+  margin-bottom: 10px;
+}
+      .our-baking img,
+      .about img
+       {
+        width: 100%;
+        border-radius: 5px;
+      }
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      ul {
+        list-style: none;
+        padding-left: 1rem;
+      }
+      ul li::before {
+        content: "✔️";
+        margin-right: 0.5rem;
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Family Bakery</h1>
+        <p>
+          We’re the biggest, best equipped and most advanced Bakery in the
+          greater Los Angeles area.
+        </p>
+        <div>
+          <button>Learn More</button>
+          <button>Contact Us</button>
+        </div>
+      </header>
+
+      <section class="about flex">
+        <div class="column">
+          <img src="../assets/images/images (8).jfif" alt="Baking Bread" />
+        </div>
+        <div class="column">
+          <h2>Who we are?</h2>
+          <ul>
+            <li>We care about environment.</li>
+            <li>We are trusted by hundreds of clients.</li>
+            <li>Social media loves us!</li>
+            <li>This list is super easy to create.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="location flex">
+        <div class="column">
+          <h2>Our Location</h2>
+          <p>
+            We have been operating for over 30 years and are Members of The
+            Federation of Master Builders. We work on projects big and small
+            from small residential extensions to full house builds.
+          </p>
+        </div>
+        <div class="column">
+          <img
+            src="../assets/images/istockphoto-931658430-612x612.jpg"
+            alt="Bakery Location"
+          />
+        </div>
+      </section>
+
+      <section class="our-baking">
+        <h2>Our Baking</h2>
+        <p>
+          Learn more about them. We have worked truly hard to make them perfect
+          for every use.
+        </p>
+        <div class="flex">
+          <div class="column">
+            <img
+              src="../assets/images/SG_MAy2016_GroupDinnerLoaves_14760_2500w_web.jpg"
+              alt="Bread"
+            />
+            <h3>Superior Breads</h3>
+          </div>
+          <div class="column">
+            <img
+              src="../assets/images/SG_MAy2016_GroupDinnerLoaves_14760_2500w_web.jpg"
+              alt="Bagel"
+            />
+            <h3>Bagels</h3>
+          </div>
+          <div class="column">
+            <img
+              src="../assets/images/SG_MAy2016_GroupDinnerLoaves_14760_2500w_web.jpg"
+              alt="Cookies"
+            />
+            <h3>Cookies</h3>
+          </div>
+        </div>
+      </section>
+
+      
+    </div>
+  </body>
+</html>
