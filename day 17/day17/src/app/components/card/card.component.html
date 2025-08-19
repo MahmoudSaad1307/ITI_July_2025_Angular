@@ -1,0 +1,24 @@
+<div class="card">
+  <img
+    [src]="product.image"
+    class="h-full card-img-top"
+    alt="{{ product.title }}"
+  />
+  <div class="card-body text-center">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p>Quantity: {{ product.quantity }}</p>
+    <div class="d-flex justify-content-center align-items-center">
+      <ng-container class="" [ngSwitch]="product.quantity">
+        <button *ngSwitchDefault class="btn btn-success w-50">
+          Add to Cart
+        </button>
+        <p *ngSwitchCase="1" class="text-warning">Only 1 piece available</p>
+        <p *ngSwitchCase="0" class="text-danger">Sold Out</p>
+      </ng-container>
+
+      <button *ngIf="product.quantity > 0" class="btn btn-primary mx-2 w-50">
+        Pay Now
+      </button>
+    </div>
+  </div>
+</div>
